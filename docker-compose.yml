@@ -10,6 +10,7 @@ services:
     environment:
       - NODE_ENV=development
       - OTEL_SERVICE_NAME=todos-api
+      - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
     volumes:
       - ./back-end/todos-api:/usr/src/app
       - /usr/src/app/node_modules
@@ -23,6 +24,7 @@ services:
     environment:
       - NODE_ENV=development
       - OTEL_SERVICE_NAME=notification-api
+      - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
     volumes:
       - ./back-end/notification-api:/usr/src/app
       - /usr/src/app/node_modules
