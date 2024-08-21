@@ -9,6 +9,7 @@ services:
       - "3001:3000"
     environment:
       - NODE_ENV=development
+      - OTEL_SERVICE_NAME=todos-api
     volumes:
       - ./back-end/todos-api:/usr/src/app
       - /usr/src/app/node_modules
@@ -21,6 +22,7 @@ services:
       - "3002:3000"
     environment:
       - NODE_ENV=development
+      - OTEL_SERVICE_NAME=notification-api
     volumes:
       - ./back-end/notification-api:/usr/src/app
       - /usr/src/app/node_modules
