@@ -1,21 +1,9 @@
-// tracing.js
-'use strict';
-
-const opentelemetry = require('@opentelemetry/sdk-node');
-const { OTLPTraceExporter } =  require('@opentelemetry/exporter-trace-otlp-http');
+const { HoneycombSDK } = require('@honeycombio/opentelemetry-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
+const opentelemetry = require('@opentelemetry/api');
 
-const sdk = new opentelemetry.NodeSDK({
-    traceExporter: new OTLPTraceExporter(),
-    instrumentations: [
-        getNodeAutoInstrumentations({
-            // we recommend disabling fs autoinstrumentation since it can be noisy
-            // and expensive during startup
-            '@opentelemetry/instrumentation-fs': {
-                enabled: false,
-            },
-        }),
-    ],
+const sdk = new HoneycombSDK({
+    instrumentations: [getNodeAutoInstrumentations()]
 });
 
 sdk.start();
