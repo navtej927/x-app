@@ -1,5 +1,5 @@
 {
-  "name": "todos-api",
+  "name": "notification-api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "fastify": "^4.28.1"
+    "express": "^4.19.2"
   }
 }
