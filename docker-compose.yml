@@ -29,3 +29,17 @@ services:
       - ./back-end/notification-api:/usr/src/app
       - /usr/src/app/node_modules
     command: npm run start
+  weather-api:
+    build:
+      context: ./back-end/weather-api
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=development
+      - OTEL_SERVICE_NAME=weather-api
+      - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
+    volumes:
+      - ./back-end/weather-api:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start

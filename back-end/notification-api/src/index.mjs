@@ -1,5 +1,6 @@
 import express from "express";
 import opentelemetry from "@opentelemetry/api";
+import axios from 'axios';
 
 const app = express();
 
@@ -11,6 +12,13 @@ app.get("/api/data", (req, res) => {
         "banana",
         "orange"
     ])
+})
+
+app.get("/api/combine", async (req, res) => {
+    const response = await axios("http://weather-api:3000/api/data");
+    res.status(200).json({
+        data: response.data
+    })
 })
 
 app.listen(3000, () => {
