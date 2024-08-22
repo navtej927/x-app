@@ -1,5 +1,6 @@
 const { HoneycombSDK } = require('@honeycombio/opentelemetry-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
+const { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');
 const opentelemetry = require('@opentelemetry/api');
 
 const sdk = new HoneycombSDK({
@@ -7,7 +8,9 @@ const sdk = new HoneycombSDK({
         '@opentelemetry/instrumentation-fs': {
             enabled: false,
         },
-    })]
+    },
+    new HttpInstrumentation()
+)]
 });
 
 //
