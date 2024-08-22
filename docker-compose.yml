@@ -28,6 +28,9 @@ services:
       - NODE_ENV=development
       - OTEL_SERVICE_NAME=notification-api
       - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=${OTEL_EXPORTER_OTLP_PROTOCOL}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
     volumes:
       - ./back-end/notification-api:/usr/src/app
       - /usr/src/app/node_modules
@@ -42,6 +45,9 @@ services:
       - NODE_ENV=development
       - OTEL_SERVICE_NAME=weather-api
       - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=${OTEL_EXPORTER_OTLP_PROTOCOL}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
     volumes:
       - ./back-end/weather-api:/usr/src/app
       - /usr/src/app/node_modules
