@@ -11,6 +11,9 @@ services:
       - NODE_ENV=development
       - OTEL_SERVICE_NAME=todos-api
       - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=${OTEL_EXPORTER_OTLP_PROTOCOL}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
     volumes:
       - ./back-end/todos-api:/usr/src/app
       - /usr/src/app/node_modules
