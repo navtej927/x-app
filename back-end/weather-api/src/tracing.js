@@ -3,7 +3,16 @@ const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumenta
 const opentelemetry = require('@opentelemetry/api');
 
 const sdk = new HoneycombSDK({
-    instrumentations: [getNodeAutoInstrumentations()]
+    instrumentations: [getNodeAutoInstrumentations({
+        '@opentelemetry/instrumentation-fs': {
+            enabled: false,
+        },
+    })]
 });
+
+//
+// Global tracer for this service.
+//
+const tracer = opentelemetry.trace.getTracer(process.env.OTEL_SERVICE_NAME);
 
 sdk.start();
