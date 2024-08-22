@@ -14,6 +14,9 @@ services:
       - OTEL_EXPORTER_OTLP_PROTOCOL=${OTEL_EXPORTER_OTLP_PROTOCOL}
       - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
       - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
+      - AWS_XRAY_DAEMON_ADDRESS=xray-daemon:2000
+      - AWS_REGION=us-east-1
+
     volumes:
       - ./back-end/todos-api:/usr/src/app
       - /usr/src/app/node_modules
@@ -31,6 +34,8 @@ services:
       - OTEL_EXPORTER_OTLP_PROTOCOL=${OTEL_EXPORTER_OTLP_PROTOCOL}
       - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
       - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
+      - AWS_XRAY_DAEMON_ADDRESS=xray-daemon:2000
+      - AWS_REGION=us-east-1
     volumes:
       - ./back-end/notification-api:/usr/src/app
       - /usr/src/app/node_modules
@@ -48,7 +53,18 @@ services:
       - OTEL_EXPORTER_OTLP_PROTOCOL=${OTEL_EXPORTER_OTLP_PROTOCOL}
       - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
       - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
+      - AWS_XRAY_DAEMON_ADDRESS=xray-daemon:2000
+      - AWS_REGION=us-east-1
     volumes:
       - ./back-end/weather-api:/usr/src/app
       - /usr/src/app/node_modules
-    command: npm run start
+  xray-daemon:
+    image: amazon/aws-xray-daemon
+    ports:
+      - "2000:2000/udp"  # Expose UDP port for X-Ray
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=us-east-1
+    command:
+      - "xray -o -b xray-daemon:2000"
