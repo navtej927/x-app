@@ -6,7 +6,7 @@ const fastify = Fastify({
 })
 
 fastify.get('/api/combine', async function handler (request, reply) {
-  const URL = "http://notification-api:3000/api/data";
+  const URL = "http://notification-api:3000/api/combine";
   const response = await axios.get(URL);
   reply.send({ data: response.data })
 })

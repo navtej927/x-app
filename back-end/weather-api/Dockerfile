@@ -1,5 +1,5 @@
 # Use an official Node runtime as the parent image
-FROM node:22
+FROM node:22-alpine
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
