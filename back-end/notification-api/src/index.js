@@ -1,10 +1,15 @@
 const express = require("express");
 const opentelemetry = require("@opentelemetry/api");
+const AWSXRay = require('aws-xray-sdk');
 const axios = require("axios");
 
 const app = express();
 
 const tracer = opentelemetry.trace.getTracer("notification-api");
+
+// aws
+AWSXRay.setDaemonAddress(process.env.AWS_XRAY_DAEMON_ADDRESS);
+app.use(AWSXRay.express.openSegment('notification-api'));
 
 axios.interceptors.request.use(request => {
     console.log("axios", request.headers);
@@ -30,6 +35,8 @@ app.get("/api/combine", async (req, res) => {
         res.status(500).json({ error: "Failed to fetch data" });
     }
 });
+
+app.use(AWSXRay.express.closeSegment());
 
 app.listen(3000, () => {
     console.log("Notification API is listening on PORT 3000");
