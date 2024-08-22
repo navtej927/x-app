@@ -6,6 +6,11 @@ const app = express();
 
 const tracer = opentelemetry.trace.getTracer("notification-api-temp");
 
+axios.interceptors.request.use(request => {
+    console.log("axios", request.headers);
+    return request;
+});
+
 app.get("/api/data", (req, res) => {
     res.status(200).json([
         "apple",
