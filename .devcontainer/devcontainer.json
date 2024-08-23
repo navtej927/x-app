@@ -1,5 +1,8 @@
 {
     "name": "Node.js Development with AWS CLI",
+    "features": {
+        "aws-cli": "latest" // Install the latest version of AWS CLI
+    },
     "settings": {
         "workbench.colorTheme": "Default Dark+",
         "editor.formatOnSave": true,
