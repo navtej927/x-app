@@ -1,6 +1,26 @@
 version: '3.8'
 
 services:
+  frontend-web:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - OTEL_SERVICE_NAME=x-app-web
+      - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
+      - OTEL_EXPORTER_OTLP_PROTOCOL=${OTEL_EXPORTER_OTLP_PROTOCOL}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
+      - AWS_XRAY_DAEMON_ADDRESS=xray-daemon:2000
+      - AWS_REGION=us-east-1
+
+    volumes:
+      - ./frontend-web:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start
   todos-api:
     build:
       context: ./back-end/todos-api

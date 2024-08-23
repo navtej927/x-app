@@ -2,7 +2,7 @@
     "name": "Node.js Development with AWS CLI",
     "features": {
         "aws-cli": {
-            "version": "latest"
+            "version": "latest" 
         }
     },
     "remoteEnv": {
