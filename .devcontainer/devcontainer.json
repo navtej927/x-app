@@ -1,7 +1,12 @@
 {
     "name": "Node.js Development with AWS CLI",
     "features": {
-        "aws-cli": "latest" // Install the latest version of AWS CLI
+        "aws-cli": {
+            "version": "latest"
+        }
+    },
+    "remoteEnv": {
+        "AWS_CLI_AUTO_PROMPT":"on-partial"
     },
     "settings": {
         "workbench.colorTheme": "Default Dark+",
@@ -14,4 +19,14 @@
         "dbaeumer.vscode-eslint",
         "ms-vscode.vscode-typescript-tslint-plugin"
     ],
+    "customizations": {
+        "vscode": {
+          "extensions": [
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "ms-azuretools.vscode-docker"
+          ]
+        }
+    },
+    "forwardPorts": [3000]
 }
