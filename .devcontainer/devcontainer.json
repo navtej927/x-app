@@ -1,0 +1,14 @@
+{
+    "name": "Node.js Development with AWS CLI",
+    "settings": {
+        "workbench.colorTheme": "Default Dark+",
+        "editor.formatOnSave": true,
+        "javascript.format.enable": true,
+        "typescript.format.enable": true
+    },
+    "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-typescript-tslint-plugin"
+    ],
+}
