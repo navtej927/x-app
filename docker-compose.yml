@@ -18,7 +18,7 @@ services:
       - AWS_REGION=us-east-1
 
     volumes:
-      - ./frontend-web:/app
+      - ./front-end:/app
       - /app/node_modules
     command: npm run dev
   todos-api:
